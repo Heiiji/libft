@@ -82,8 +82,8 @@ char			*process_dot_bis(char *cur, char *result, int precision,\
 				char **str)
 {
 	if (ft_strlen(result) < (size_t)precision && (*(*str - 1) == 'd' || \
-	*(*str - 1) == 'D' || *(*str - 1) == 'O' | *(*str - 1) == 'o' || \
-	*(*str - 1) == 'U' | *(*str - 1) == 'u'))
+	*(*str - 1) == 'D' || *(*str - 1) == 'O' || *(*str - 1) == 'o' || \
+	*(*str - 1) == 'U' || *(*str - 1) == 'u'))
 	{
 		cur = malloc(precision + 1);
 		ft_memset(cur, 48, precision);

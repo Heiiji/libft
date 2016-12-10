@@ -18,9 +18,7 @@ void	*ft_memccpy(void *restrict dst, const void *restrict src, int c, \
 {
 	unsigned char	*cursor;
 	unsigned char	*copiter;
-	unsigned char	*mem;
 
-	mem = (unsigned char *)dst;
 	if (n == 0)
 		return (NULL);
 	cursor = (unsigned char *)dst;

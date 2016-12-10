@@ -72,11 +72,9 @@ static void		init_tools(void)
 
 int				ft_printf(const char *format, ...)
 {
-	int		curseur;
 	int		compteur;
 	va_list ap;
 
-	curseur = 0;
 	compteur = 0;
 	va_start(ap, format);
 	init_tools();

@@ -60,10 +60,11 @@ char			*process_lc(char **str, va_list *ap)
 char			*process_percent(char **str, va_list *ap)
 {
 	char	*render;
-	va_list *ap2;
 
-	ap2 = ap;
-	render = (char *)malloc(sizeof(char) * 2);
+	if (ap != NULL)
+		render = (char *)malloc(sizeof(char) * 2);
+	else
+		render = (char *)malloc(sizeof(char) * 2);
 	*render = '%';
 	*(render + 1) = '\0';
 	*str += 1;

@@ -6,7 +6,7 @@
 /*   By: jjuret <jjuret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/03 18:40:56 by jjuret            #+#    #+#             */
-/*   Updated: 2016/12/08 13:06:53 by jjuret           ###   ########.fr       */
+/*   Updated: 2016/12/10 15:31:59 by jjuret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 # include <string.h>
 # include <unistd.h>
 # include <wchar.h>
+# include "./get_next_line.h"
 # include "./ft_printf.h"
 
 typedef	struct		s_list

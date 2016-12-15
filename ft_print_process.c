@@ -6,7 +6,7 @@
 /*   By: jjuret <jjuret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/30 16:50:49 by jjuret            #+#    #+#             */
-/*   Updated: 2016/12/10 13:43:54 by jjuret           ###   ########.fr       */
+/*   Updated: 2016/12/14 15:48:08 by jjuret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,24 @@ char			*process_ld(char **str, va_list *ap)
 
 char			*process_o(char **str, va_list *ap)
 {
+	int	nbr;
+
 	*str += 1;
+	if (check_leng(*str) == 31)
+		return (ft_itoa_base_l(va_arg(*ap, size_t), 8));
+	if (check_leng(*str) == 12)
+		return (ft_itoa_base_ll(va_arg(*ap, long long int), 8));
+	if (check_leng(*str) == 11 || *(*str - 1) == 'O')
+		return (ft_itoa_base_l(va_arg(*ap, long int), 8));
+	if (check_leng(*str) == 21)
+		return (ft_itoa_base_ll(va_arg(*ap, long long int), 8));
+	if (check_leng(*str) == 1)
+		return (ft_itoa_base_h(va_arg(*ap, int), 8));
+	if (check_leng(*str) == 2)
+	{
+		nbr = va_arg(*ap, int);
+		return (ft_itoa_base_hh((short int)nbr, 8));
+	}
 	return (ft_itoa_base(va_arg(*ap, int), 8));
 }
 

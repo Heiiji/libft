@@ -6,7 +6,7 @@
 /*   By: jjuret <jjuret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/08 14:12:08 by jjuret            #+#    #+#             */
-/*   Updated: 2016/12/09 15:48:07 by jjuret           ###   ########.fr       */
+/*   Updated: 2016/12/14 13:04:36 by jjuret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ char			*process_dot(char **str, va_list *ap)
 	*str += 1;
 	if (**str >= '0' && **str <= '9')
 		precision = ft_atoi(*str);
-	g_worker[(int)'.'] = precision;
+	g_worker[(int)'.'] = precision + 1;
 	while (**str >= '0' && **str <= '9')
 		*str += 1;
 	result = repartiteur(str, ap);

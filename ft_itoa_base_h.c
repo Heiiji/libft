@@ -6,7 +6,7 @@
 /*   By: jjuret <jjuret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/08 12:22:37 by jjuret            #+#    #+#             */
-/*   Updated: 2016/12/08 14:10:38 by jjuret           ###   ########.fr       */
+/*   Updated: 2016/12/14 15:05:24 by jjuret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 static short int	isneg(short int *target, short int *neg, short int base)
 {
-	if (*target < 0 && base <= 10)
+	if (*target < 0 && base == 10)
 	{
 		*target = -(*target);
 		*neg = 1;
@@ -67,7 +67,7 @@ char				*ft_itoa_base_h(short int n, short int base)
 	result += (size - 1);
 	*result = '\0';
 	result = count(result, (unsigned short int)n, base);
-	if (neg == 1 && base <= 10)
+	if (neg == 1 && base == 10)
 	{
 		result--;
 		*result = '-';

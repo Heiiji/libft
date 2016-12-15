@@ -6,7 +6,7 @@
 /*   By: jjuret <jjuret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/09 14:40:01 by jjuret            #+#    #+#             */
-/*   Updated: 2016/12/10 13:51:09 by jjuret           ###   ########.fr       */
+/*   Updated: 2016/12/14 13:37:12 by jjuret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,25 @@
 
 char			*process_0_bis(char *tmp, char *work)
 {
-	if (*tmp == '-' || *tmp == '+')
+	int	len;
+
+	len = g_worker[(int)'.'];
+	if ((*tmp == '-' || *tmp == '+') && work != tmp)
 	{
 		*work = *tmp;
 		*tmp = '0';
 	}
 	tmp = work;
-	if ((int)ft_strlen(work) > (int)g_worker[(int)'.'] && \
-	g_worker[(int)'.'] > 0)
+	if ((int)ft_strlen(work) > len - 1 && \
+	len >= 0)
 	{
-		while ((int)g_worker[(int)'.'] < (int)ft_strlen(work))
+		len -= 1;
+		if (g_worker[(int)'6'] != 0)
+			len -= g_worker[(int)'6'] - g_worker[(int)'.'];
+		while (len < (int)ft_strlen(work))
 		{
-			g_worker[(int)'.'] += 1;
-			if (*tmp != '-' && *tmp != '+')
+			len += 1;
+			if (*tmp == '0' && *tmp != '-' && *tmp != '+')
 				*tmp = ' ';
 			tmp += 1;
 		}

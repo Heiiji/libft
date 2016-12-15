@@ -6,7 +6,7 @@
 /*   By: jjuret <jjuret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/30 17:20:19 by jjuret            #+#    #+#             */
-/*   Updated: 2016/12/10 13:01:09 by jjuret           ###   ########.fr       */
+/*   Updated: 2016/12/15 14:09:17 by jjuret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,15 +46,25 @@ char			*process_c(char **str, va_list *ap)
 char			*process_lc(char **str, va_list *ap)
 {
 	wchar_t	*tmp;
+	char	*render;
 
 	*str += 1;
+	render = NULL;
 	tmp = (wchar_t *)malloc(sizeof(wchar_t) * 2);
 	tmp[0] = va_arg(*ap, wint_t);
 	tmp[1] = L'\0';
 	ft_putwstr(tmp);
+	if (tmp[0] <= 0x7F)
+		render = ft_strdup("0");
+	else if (tmp[0] <= 0x7FF)
+		render = ft_strdup("00");
+	else if (tmp[0] <= 0xFFFF)
+		render = ft_strdup("000");
+	else
+		render = ft_strdup("0000");
 	free(tmp);
 	g_worker[(int)'!'] = 1;
-	return (ft_strdup("0"));
+	return (render);
 }
 
 char			*process_percent(char **str, va_list *ap)

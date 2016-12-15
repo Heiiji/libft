@@ -6,7 +6,7 @@
 /*   By: jjuret <jjuret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/08 15:38:20 by jjuret            #+#    #+#             */
-/*   Updated: 2016/12/10 13:58:31 by jjuret           ###   ########.fr       */
+/*   Updated: 2016/12/15 13:30:10 by jjuret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ void	print_action(char **format, va_list *ap, int *compteur)
 	char	*tool;
 
 	ft_memset(g_worker, 0, 255);
+	g_worker[(int)'.'] = -5;
 	*format += 1;
 	tool = repartiteur(format, ap);
 	if (g_worker[(int)'!'] != 1)

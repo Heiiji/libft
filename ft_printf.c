@@ -6,7 +6,7 @@
 /*   By: jjuret <jjuret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/23 23:37:54 by jjuret            #+#    #+#             */
-/*   Updated: 2016/12/10 13:13:04 by jjuret           ###   ########.fr       */
+/*   Updated: 2016/12/15 15:44:48 by jjuret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ char			*repartiteur(char **str, va_list *ap)
 	char	*matcher;
 
 	while (**str == 'l' || **str == 'h' || **str == 'z' || **str == 'j')
+		*str += 1;
+	while (**str == *(*str - 1) && **str != '%')
 		*str += 1;
 	if (g_print_tools[(int)**str] != 0)
 		matcher = g_print_tools[(int)**str](str, ap);
@@ -41,11 +43,13 @@ static void		init_tools2(void)
 	g_print_tools[(int)'8'] = &process_nbr;
 	g_print_tools[(int)'9'] = &process_nbr;
 	g_print_tools[(int)'#'] = &process_diese;
+	g_print_tools[(int)'p'] = &process_p;
 }
 
 static void		init_tools(void)
 {
 	ft_memset(g_print_tools, 0, 255);
+	g_worker[(int)'.'] = -5;
 	g_print_tools[(int)'L'] = &process_l;
 	g_print_tools[(int)'l'] = &process_l;
 	g_print_tools[(int)'d'] = &process_d;

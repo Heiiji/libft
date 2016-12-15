@@ -6,7 +6,7 @@
 /*   By: jjuret <jjuret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/08 13:05:46 by jjuret            #+#    #+#             */
-/*   Updated: 2016/12/08 14:14:37 by jjuret           ###   ########.fr       */
+/*   Updated: 2016/12/14 15:05:40 by jjuret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 static char	isneg(char *target, char *neg, char base)
 {
-	if (*target < 0 && base <= 10)
+	if (*target < 0 && base == 10)
 	{
 		*target = -(*target);
 		*neg = 1;
@@ -67,7 +67,7 @@ char		*ft_itoa_base_hh(char n, char base)
 	result += (size - 1);
 	*result = '\0';
 	result = count(result, (unsigned char)n, base);
-	if (neg == 1 && base <= 10)
+	if (neg == 1 && base == 10)
 	{
 		result--;
 		*result = '-';

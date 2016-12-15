@@ -6,7 +6,7 @@
 #    By: jjuret <jjuret@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/07/18 08:54:13 by jjuret            #+#    #+#              #
-#    Updated: 2016/12/10 15:14:28 by jjuret           ###   ########.fr        #
+#    Updated: 2016/12/15 17:30:08 by jjuret           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -92,6 +92,7 @@ SRC =	./ft_atoi.c\
 		./ft_print_process3.c\
 		./ft_print_process4.c\
 		./ft_print_process5.c\
+		./ft_print_process6.c\
 		./ft_print_miniprocess.c\
 		./ft_print_miniprocess2.c\
 		./ft_itoa_base.c\
@@ -179,6 +180,7 @@ OBJS = ./ft_atoi.o\
 		./ft_print_process3.o\
 		./ft_print_process4.o\
 		./ft_print_process5.o\
+		./ft_print_process6.o\
 		./ft_print_miniprocess.o\
 		./ft_print_miniprocess2.o\
 		./ft_itoa_base.o\

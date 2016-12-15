@@ -6,7 +6,7 @@
 /*   By: jjuret <jjuret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/08 15:03:47 by jjuret            #+#    #+#             */
-/*   Updated: 2016/12/10 13:49:24 by jjuret           ###   ########.fr       */
+/*   Updated: 2016/12/14 14:23:11 by jjuret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ static char		*putting_dx(char *str, char ix)
 {
 	char	*result;
 
+	if (ft_strlen(str) < 1)
+		return (str);
 	if (how_free(str) <= 0 && how_free_rev(str) <= 0)
 		return (dx_extend_0(str, ix));
 	if (how_free(str) <= 2 && how_free_rev(str) <= 2)
@@ -78,7 +80,7 @@ char			*process_diese(char **str, va_list *ap)
 	*str += 1;
 	tmp = repartiteur(str, ap);
 	cur = tmp;
-	if ((*(*str - 1) == 'x' || *(*str - 1) == 'X') && ft_atoi(tmp) != 0)
+	if ((*(*str - 1) == 'x' || *(*str - 1) == 'X') && ft_strcmp(tmp, "0") != 0)
 		result = putting_dx(tmp, *(*str - 1));
 	else
 	{

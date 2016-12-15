@@ -6,7 +6,7 @@
 /*   By: jjuret <jjuret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/30 16:52:59 by jjuret            #+#    #+#             */
-/*   Updated: 2016/12/09 15:12:02 by jjuret           ###   ########.fr       */
+/*   Updated: 2016/12/14 17:45:03 by jjuret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,28 +17,25 @@
 
 char			*process_x(char **str, va_list *ap)
 {
-	char *result;
+	char	*result;
+	int		tmp;
 
 	*str += 1;
-	if (*(*str - 2) == 'l')
+	result = NULL;
+	if (check_leng(*str) == 12)
+		result = ft_itoa_base_ll(va_arg(*ap, long long int), 16);
+	if (check_leng(*str) == 11)
+		result = ft_itoa_base_l(va_arg(*ap, long int), 16);
+	if (check_leng(*str) == 21)
+		result = ft_itoa_base_ll(va_arg(*ap, uintmax_t), 16);
+	if (result == NULL)
 	{
-		if (*(*str - 3) == 'l')
-			result = ft_itoa_base_ll(va_arg(*ap, long long int), 16);
-		else
-			result = ft_itoa_base_l(va_arg(*ap, long int), 16);
-	}
-	else
-	{
-		if (*(*str - 2) == 'j')
-			result = ft_itoa_base_ll(va_arg(*ap, uintmax_t), 16);
-		else
+		tmp = va_arg(*ap, int);
+		result = ft_itoa_base(tmp, 16);
+		if (ft_strlen(result) > 8 || tmp == 0)
 		{
-			result = ft_itoa_base(va_arg(*ap, int), 16);
-			if (ft_strlen(result) > 8)
-			{
-				free(result);
-				return (ft_strdup("0"));
-			}
+			free(result);
+			return (ft_strdup("0"));
 		}
 	}
 	return (result);
@@ -78,14 +75,13 @@ char			*process_0(char **str, va_list *ap)
 	tmp = work;
 	if ((*tmp == '+' || *tmp == '-') && *(tmp + 1) == ' ')
 		tmp++;
-	while (*tmp == ' ' && *(tmp + 1) == ' ')
+	while (*tmp == ' ')
 	{
 		*tmp = '0';
 		tmp++;
 	}
-	if (*tmp == ' ' && g_worker[(int)' '] != 1)
-		*tmp = '0';
-	tmp++;
+	if (g_worker[(int)' '] == 1 && tmp != work)
+		*(tmp - 1) = ' ';
 	return (process_0_bis(tmp, work));
 }
 
@@ -101,6 +97,7 @@ char			*process_nbr(char **str, va_list *ap)
 		*str += 1;
 	work = repartiteur(str, ap);
 	len = ft_atoi(tmp);
+	g_worker[(int)'6'] = len;
 	if (g_worker[(int)'c'] == 2)
 		len -= 1;
 	tmp = (char*)malloc(sizeof(char) * (len + ft_strlen(work) + 1));

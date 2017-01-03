@@ -6,7 +6,7 @@
 /*   By: jjuret <jjuret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/30 17:20:19 by jjuret            #+#    #+#             */
-/*   Updated: 2016/12/15 14:09:17 by jjuret           ###   ########.fr       */
+/*   Updated: 2017/01/03 12:34:26 by jjuret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ char			*process_ls(char **str, va_list *ap)
 
 	*str += 1;
 	result = va_arg(*ap, wchar_t*);
+	if (result == NULL)
+		return (ft_strdup("(null)"));
 	retur = (char *)malloc(sizeof(char) * ft_wstrlen(result) + 1);
 	ft_putwstr(result);
 	ft_memset(retur, 48, ft_wstrlen(result));

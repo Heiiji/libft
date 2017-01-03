@@ -6,7 +6,7 @@
 /*   By: jjuret <jjuret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/30 16:50:49 by jjuret            #+#    #+#             */
-/*   Updated: 2016/12/14 15:48:08 by jjuret           ###   ########.fr       */
+/*   Updated: 2017/01/03 13:06:47 by jjuret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ char			*process_u(char **str, va_list *ap)
 	drole[1] = '\0';
 	g_worker[(int)'+'] = -1;
 	if (check_leng(*str) == 11 || *(*str - 1) == 'U')
-		result = ft_itoa_base_ll(va_arg(*ap, long unsigned int), 10);
+		result = ft_itoa_base_ull(va_arg(*ap, long unsigned int), 10);
 	if (check_leng(*str) == 12 && *(*str - 1) != 'U')
-		result = ft_itoa_base_ll(va_arg(*ap, long long unsigned int), 10);
+		result = ft_itoa_base_ull(va_arg(*ap, long long unsigned int), 10);
 	if (check_leng(*str) == 1 && *(*str - 1) != 'U')
 		result = ft_itoa_base((unsigned short)va_arg(*ap, int), 10);
 	if (check_leng(*str) == 2 && *(*str - 1) != 'U')
@@ -68,7 +68,7 @@ char			*process_d(char **str, va_list *ap)
 char			*process_ld(char **str, va_list *ap)
 {
 	*str += 1;
-	return (ft_itoa_l(va_arg(*ap, long int)));
+	return (ft_itoa_base_l(va_arg(*ap, long int), 10));
 }
 
 char			*process_o(char **str, va_list *ap)
@@ -97,5 +97,5 @@ char			*process_o(char **str, va_list *ap)
 char			*process_lo(char **str, va_list *ap)
 {
 	*str += 1;
-	return (ft_itoa_base_l(va_arg(*ap, int), 8));
+	return (ft_itoa_base_l(va_arg(*ap, long int), 8));
 }

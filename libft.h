@@ -6,7 +6,7 @@
 /*   By: jjuret <jjuret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/03 18:40:56 by jjuret            #+#    #+#             */
-/*   Updated: 2016/12/15 15:44:56 by jjuret           ###   ########.fr       */
+/*   Updated: 2017/01/03 13:04:24 by jjuret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,7 @@ int					ft_tolower(int c);
 int					ft_toupper(int c);
 char				*ft_itoa_base(int n, int base);
 char				*ft_itoa_base_ll(long long int n, long long int base);
+char				*ft_itoa_base_ull(unsigned long long int n, unsigned long long int base);
 int					ft_power(int nbr, int power);
 
 #endif

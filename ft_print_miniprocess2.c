@@ -6,7 +6,7 @@
 /*   By: jjuret <jjuret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/09 14:40:01 by jjuret            #+#    #+#             */
-/*   Updated: 2016/12/14 13:37:12 by jjuret           ###   ########.fr       */
+/*   Updated: 2017/01/05 11:34:13 by jjuret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,20 +45,26 @@ char			*process_0_bis(char *tmp, char *work)
 
 char			*process_pos_bis(char *render, char *nbr)
 {
-	if (*render != ' ')
+	int	toggle;
+
+	if (*render == '0' && g_worker[(int)'0'] == 1)
+		toggle = 1;
+	else
+		toggle = 0;
+	if (*render != ' ' && toggle == 0)
 	{
 		if (how_free_rev(nbr) < 1)
 			render = (char *)malloc(sizeof(char) * ft_strlen(nbr) + 2);
 		else
 			render = (char *)malloc(sizeof(char) * ft_strlen(nbr) + 1);
 		*render = '+';
-		ft_strcpy(render + 1, nbr);
+		ft_strcpy((render + 1), nbr);
 		if (how_free_rev(nbr) >= 1)
 			render[ft_strlen(nbr)] = '\0';
 		free(nbr);
 		nbr = render;
 	}
-	if (*render == ' ' && ft_strchr(nbr, '+') == NULL)
+	if ((*render == ' ' || toggle == 1) && ft_strchr(nbr, '+') == NULL)
 		*render = '+';
 	return (nbr);
 }

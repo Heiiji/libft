@@ -6,7 +6,7 @@
 /*   By: jjuret <jjuret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/30 16:50:49 by jjuret            #+#    #+#             */
-/*   Updated: 2017/01/03 13:06:47 by jjuret           ###   ########.fr       */
+/*   Updated: 2017/01/03 15:02:50 by jjuret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ char			*process_d(char **str, va_list *ap)
 	if (check_leng(*str) == 1)
 	{
 		nbr = (short int)va_arg(*ap, int);
-		return (ft_itoa_base_h(nbr, 10));
+		return (ft_itoa_base(nbr, 10));
 	}
 	return (ft_itoa(va_arg(*ap, int)));
 }

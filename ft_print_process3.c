@@ -6,7 +6,7 @@
 /*   By: jjuret <jjuret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/30 17:20:19 by jjuret            #+#    #+#             */
-/*   Updated: 2017/01/03 12:34:26 by jjuret           ###   ########.fr       */
+/*   Updated: 2017/01/05 11:17:21 by jjuret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ char			*process_pos(char **str, va_list *ap)
 	if (g_worker[(int)'+'] != 0 || ft_strchr(nbr, '-') != NULL)
 		return (render);
 	g_worker[(int)'+'] = 1;
-	while (*(render + 1) == ' ')
+	while (*(render + 1) == ' ' && *(render) == ' ')
 		render++;
 	return (process_pos_bis(render, nbr));
 }

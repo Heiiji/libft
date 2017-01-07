@@ -6,7 +6,7 @@
 /*   By: jjuret <jjuret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/30 16:52:59 by jjuret            #+#    #+#             */
-/*   Updated: 2016/12/14 17:45:03 by jjuret           ###   ########.fr       */
+/*   Updated: 2017/01/07 17:08:54 by jjuret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ char			*process_x(char **str, va_list *ap)
 
 	*str += 1;
 	result = NULL;
+	g_worker[(int)'x'] = 1;
 	if (check_leng(*str) == 12)
 		result = ft_itoa_base_ll(va_arg(*ap, long long int), 16);
 	if (check_leng(*str) == 11)

@@ -6,7 +6,7 @@
 /*   By: jjuret <jjuret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/08 14:12:08 by jjuret            #+#    #+#             */
-/*   Updated: 2016/12/14 13:04:36 by jjuret           ###   ########.fr       */
+/*   Updated: 2017/01/07 17:42:27 by jjuret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,8 @@ char			*process_space(char **str, va_list *ap)
 
 	*str += 1;
 	nbr = repartiteur(str, ap);
-	if (*(*str - 1) == 'u')
+	if (*(*str - 1) == 'u' || g_worker[(int)'x'] == 1 || g_worker[(int)'o'] \
+	== 1 || g_worker[(int)'c'])
 		return (nbr);
 	if (*nbr != '-' && *nbr != '+' && *nbr != '0' && *nbr != ' ' && \
 	g_worker[(int)' '] != 1 && *nbr != '%' && ft_strlen(nbr) > 0 && *nbr > 0)

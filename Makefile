@@ -6,7 +6,7 @@
 #    By: jjuret <jjuret@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/07/18 08:54:13 by jjuret            #+#    #+#              #
-#    Updated: 2017/01/03 13:24:41 by jjuret           ###   ########.fr        #
+#    Updated: 2017/01/09 16:53:01 by jjuret           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,6 +54,7 @@ SRC =	./ft_atoi.c\
 		./ft_putstr_fd.c\
 		./ft_putstr.c\
 		./ft_putwstr.c\
+		./ft_putnwstr.c\
 		./ft_putwstr_fd.c\
 		./ft_sqrt.c\
 		./ft_strcat.c\
@@ -144,6 +145,7 @@ OBJS = ./ft_atoi.o\
 		./ft_putstr_fd.o\
 		./ft_putstr.o\
 		./ft_putwstr.o\
+		./ft_putnwstr.o\
 		./ft_putwstr_fd.o\
 		./ft_sqrt.o\
 		./ft_strcat.o\

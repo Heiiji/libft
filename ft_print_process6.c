@@ -6,7 +6,7 @@
 /*   By: jjuret <jjuret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/14 14:35:59 by jjuret            #+#    #+#             */
-/*   Updated: 2016/12/15 15:44:38 by jjuret           ###   ########.fr       */
+/*   Updated: 2017/01/09 14:17:20 by jjuret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,34 @@ char			*process_p(char **str, va_list *ap)
 	ft_strcpy(result + 2, tmp);
 	*(result + ft_strlen(tmp) + 2) = '\0';
 	free(tmp);
+	return (result);
+}
+
+char			*process_hx(char **str, va_list *ap)
+{
+	char			*result;
+	char			*tmp;
+	unsigned int	leng;
+
+	result = NULL;
+	if (check_leng(*str) == 1)
+	{
+		tmp = ft_itoa_base((short)va_arg(*ap, int), 16);
+		leng = 4;
+	}
+	else
+	{
+		tmp = ft_itoa_base((char)va_arg(*ap, int), 16);
+		leng = 2;
+	}
+	if (ft_strlen(tmp) > leng)
+	{
+		result = (char*)malloc(sizeof(char) * leng + 1);
+		result = ft_strncpy(result, tmp, leng);
+		free(tmp);
+		result[leng] = '\0';
+	}
+	else
+		result = tmp;
 	return (result);
 }

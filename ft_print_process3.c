@@ -6,7 +6,7 @@
 /*   By: jjuret <jjuret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/30 17:20:19 by jjuret            #+#    #+#             */
-/*   Updated: 2017/01/07 17:42:53 by jjuret           ###   ########.fr       */
+/*   Updated: 2017/01/09 15:27:59 by jjuret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,20 @@ char			*process_ls(char **str, va_list *ap)
 {
 	wchar_t	*result;
 	char	*retur;
+	int		leng;
 
 	*str += 1;
 	result = va_arg(*ap, wchar_t*);
 	if (result == NULL)
 		return (ft_strdup("(null)"));
-	retur = (char *)malloc(sizeof(char) * ft_wstrlen(result) + 1);
-	ft_putwstr(result);
-	ft_memset(retur, 48, ft_wstrlen(result));
-	retur[ft_wstrlen(result)] = 0;
+	if (g_worker[(int)'.'] > 0)
+		leng = g_worker[(int)'.'] - 1;
+	else
+		leng = ft_wstrlen(result);
+	retur = (char *)malloc(sizeof(char) * leng + 1);
+	ft_putnwstr(result, leng);
+	ft_memset(retur, 48, leng);
+	retur[leng] = 0;
 	g_worker[(int)'!'] = 1;
 	return (retur);
 }
@@ -36,8 +41,10 @@ char			*process_c(char **str, va_list *ap)
 {
 	char	*tmp;
 
-	*str += 1;
 	g_worker[(int)'c'] = 1;
+	if (check_leng(*str) == 11 || check_leng(*str) == 12)
+		return (process_lc(str, ap));
+	*str += 1;
 	tmp = (char *)malloc(sizeof(char) * 2);
 	*tmp = va_arg(*ap, int);
 	*(tmp + 1) = '\0';
@@ -58,13 +65,13 @@ char			*process_lc(char **str, va_list *ap)
 	tmp[1] = L'\0';
 	ft_putwstr(tmp);
 	if (tmp[0] <= 0x7F)
-		render = ft_strdup("0");
+		render = ft_strdup("1");
 	else if (tmp[0] <= 0x7FF)
-		render = ft_strdup("00");
+		render = ft_strdup("12");
 	else if (tmp[0] <= 0xFFFF)
-		render = ft_strdup("000");
+		render = ft_strdup("123");
 	else
-		render = ft_strdup("0000");
+		render = ft_strdup("1234");
 	free(tmp);
 	g_worker[(int)'!'] = 1;
 	return (render);

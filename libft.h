@@ -6,7 +6,7 @@
 /*   By: jjuret <jjuret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/03 18:40:56 by jjuret            #+#    #+#             */
-/*   Updated: 2017/01/05 11:25:38 by jjuret           ###   ########.fr       */
+/*   Updated: 2017/01/09 14:58:34 by jjuret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ void				ft_putnbr_u(unsigned int n);
 void				ft_putstr_fd(char const *s, int fd);
 void				ft_putstr(char const *s);
 void				ft_putwstr(wchar_t *s);
+void				ft_putnwstr(const wchar_t *str, size_t len);
 void				ft_putwstr_fd(wchar_t const *str, int fd);
 int					ft_sqrt(int nb);
 char				*ft_strcat(char *s1, const char *s2);

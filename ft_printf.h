@@ -6,7 +6,7 @@
 /*   By: jjuret <jjuret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/27 14:21:22 by jjuret            #+#    #+#             */
-/*   Updated: 2016/12/15 15:44:52 by jjuret           ###   ########.fr       */
+/*   Updated: 2017/01/09 13:21:25 by jjuret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ char			*process_ld(char **str, va_list *ap);
 char			*process_o(char **str, va_list *ap);
 char			*process_lo(char **str, va_list *ap);
 char			*process_x(char **str, va_list *ap);
+char			*process_hx(char **str, va_list *ap);
 char			*process_lx(char **str, va_list *ap);
 char			*process_p(char **str, va_list *ap);
 char			*process_0(char **str, va_list *ap);

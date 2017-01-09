@@ -6,7 +6,7 @@
 /*   By: jjuret <jjuret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/09 14:40:01 by jjuret            #+#    #+#             */
-/*   Updated: 2017/01/05 11:34:13 by jjuret           ###   ########.fr       */
+/*   Updated: 2017/01/09 15:32:00 by jjuret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ char			*process_dot_bis(char *cur, char *result, int precision,\
 {
 	if (ft_strlen(result) < (size_t)precision && (*(*str - 1) == 'd' || \
 	*(*str - 1) == 'D' || *(*str - 1) == 'O' || *(*str - 1) == 'o' || \
-	*(*str - 1) == 'U' || *(*str - 1) == 'u'))
+	*(*str - 1) == 'U' || *(*str - 1) == 'u' || *(*str - 1) == 'i'))
 	{
 		cur = malloc(precision + 1);
 		ft_memset(cur, 48, precision);

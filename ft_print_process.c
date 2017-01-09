@@ -6,7 +6,7 @@
 /*   By: jjuret <jjuret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/30 16:50:49 by jjuret            #+#    #+#             */
-/*   Updated: 2017/01/07 16:35:25 by jjuret           ###   ########.fr       */
+/*   Updated: 2017/01/09 14:23:17 by jjuret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,11 @@ char			*process_u(char **str, va_list *ap)
 	if (check_leng(*str) == 1 && *(*str - 1) != 'U')
 		result = ft_itoa_base((unsigned short)va_arg(*ap, int), 10);
 	if (check_leng(*str) == 2 && *(*str - 1) != 'U')
-	{
-		drole[0] = (char)va_arg(*ap, int);
-		result = ft_strdup(&drole[0]);
-	}
+		result = ft_itoa((int)((unsigned char)va_arg(*ap, int)));
 	if (check_leng(*str) == 21 && *(*str - 1) != 'U')
-		result = ft_itoa_base_ll(va_arg(*ap, uintmax_t), 10);
+		result = ft_itoa_base_ull(va_arg(*ap, long long unsigned int), 10);
+	if (check_leng(*str) == 31 && *(*str - 1) != 'U')
+		result = ft_itoa_base_ull(va_arg(*ap, long long unsigned int), 10);
 	if (result == NULL)
 		result = ft_itoa_base_l(va_arg(*ap, unsigned int), 10);
 	return (result);

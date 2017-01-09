@@ -6,7 +6,7 @@
 /*   By: jjuret <jjuret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/27 14:21:22 by jjuret            #+#    #+#             */
-/*   Updated: 2017/01/09 13:21:25 by jjuret           ###   ########.fr       */
+/*   Updated: 2017/01/09 16:29:57 by jjuret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ char			*process_neg(char **str, va_list *ap);
 char			*dx_extend_0(char *str, char ix);
 char			*dx_extend_1(char *str, char ix);
 char			*dx_extend_2(char *str, char ix);
+int				miniconf();
 t_action		g_print_tools[255];
 int				g_worker[255];
 

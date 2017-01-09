@@ -6,7 +6,7 @@
 /*   By: jjuret <jjuret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/14 14:35:59 by jjuret            #+#    #+#             */
-/*   Updated: 2017/01/09 14:17:20 by jjuret           ###   ########.fr       */
+/*   Updated: 2017/01/09 16:30:46 by jjuret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,16 @@ char			*process_p(char **str, va_list *ap)
 	char	*tmp;
 
 	*str += 1;
+	g_worker[(int)'p'] = 1;
 	if (ap)
 		tmp = ft_itoa_base_ll(va_arg(*ap, long unsigned int), 16);
 	else
 		tmp = ft_strdup("\0");
+	if (g_worker[(int)'.'] == 1)
+	{
+		free(tmp);
+		return (ft_strdup("0x"));
+	}
 	result = (char *)malloc(sizeof(char) * ft_strlen(tmp) + 3);
 	*result = '0';
 	*(result + 1) = 'x';
@@ -61,4 +67,12 @@ char			*process_hx(char **str, va_list *ap)
 	else
 		result = tmp;
 	return (result);
+}
+
+int				miniconf()
+{
+	if (g_worker[(int)'.'] > 1)
+		return (g_worker[(int)'.']);
+	else
+		return (g_worker[(int)'6'] >= 0) ? g_worker[(int)'6'] + 1 : 0;
 }

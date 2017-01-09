@@ -6,7 +6,7 @@
 /*   By: jjuret <jjuret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/08 15:03:47 by jjuret            #+#    #+#             */
-/*   Updated: 2016/12/14 14:23:11 by jjuret           ###   ########.fr       */
+/*   Updated: 2017/01/09 16:11:37 by jjuret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,12 @@ int				how_free_rev(char *str)
 static char		*putting_dx(char *str, char ix)
 {
 	char	*result;
+	int		leng;
 
+	leng = (g_worker[(int)'.'] > 0) ? ft_strlen(str) - g_worker[(int)'.'] : 10;
 	if (ft_strlen(str) < 1)
 		return (str);
-	if (how_free(str) <= 0 && how_free_rev(str) <= 0)
+	if ((how_free(str) <= 0 && how_free_rev(str) <= 0) || leng < 1)
 		return (dx_extend_0(str, ix));
 	if (how_free(str) <= 2 && how_free_rev(str) <= 2)
 		return (dx_extend_1(str, ix));
@@ -62,12 +64,10 @@ static char		*putting_dx(char *str, char ix)
 	{
 		*(str - 1) = ix;
 		*(str - 2) = '0';
+		return (result);
 	}
-	else
-	{
-		*(str + 1) = ix;
-		*(str) = '0';
-	}
+	*(str + 1) = ix;
+	*(str) = '0';
 	return (result);
 }
 

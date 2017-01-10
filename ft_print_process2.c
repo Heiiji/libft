@@ -6,7 +6,7 @@
 /*   By: jjuret <jjuret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/30 16:52:59 by jjuret            #+#    #+#             */
-/*   Updated: 2017/01/09 15:09:28 by jjuret           ###   ########.fr       */
+/*   Updated: 2017/01/10 14:30:07 by jjuret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ char			*process_nbr(char **str, va_list *ap)
 	len = ft_atoi(tmp);
 	g_worker[(int)'6'] = len;
 	work = repartiteur(str, ap);
-	if (g_worker[(int)'c'] == 2)
+	if (g_worker[(int)'c'] == 2 || g_worker[(int)'?'] == 1)
 		len -= 1;
 	tmp = (char*)malloc(sizeof(char) * (len + ft_strlen(work) + 1));
 	result = tmp;
@@ -126,6 +126,6 @@ char			*process_s(char **str, va_list *ap)
 		else
 			return (ft_strdup("\0"));
 	}
-	else
-		return (ft_strdup("(null)"));
+	g_worker[(int)' '] = -1;
+	return (ft_strdup("(null)"));
 }

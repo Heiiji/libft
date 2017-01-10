@@ -6,7 +6,7 @@
 /*   By: jjuret <jjuret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/30 17:20:19 by jjuret            #+#    #+#             */
-/*   Updated: 2017/01/09 15:27:59 by jjuret           ###   ########.fr       */
+/*   Updated: 2017/01/10 15:25:02 by jjuret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ char			*process_c(char **str, va_list *ap)
 		return (process_lc(str, ap));
 	*str += 1;
 	tmp = (char *)malloc(sizeof(char) * 2);
-	*tmp = va_arg(*ap, int);
+	*tmp = (char)va_arg(*ap, int);
 	*(tmp + 1) = '\0';
 	if (*tmp == '\0')
 		g_worker[(int)'c'] = 2;
@@ -60,8 +60,11 @@ char			*process_lc(char **str, va_list *ap)
 
 	*str += 1;
 	render = NULL;
+	g_worker[(int)'C'] = 1;
 	tmp = (wchar_t *)malloc(sizeof(wchar_t) * 2);
 	tmp[0] = va_arg(*ap, wint_t);
+	if (*tmp == 0)
+		g_worker[(int)'C'] = 2;
 	tmp[1] = L'\0';
 	ft_putwstr(tmp);
 	if (tmp[0] <= 0x7F)
@@ -99,8 +102,10 @@ char			*process_pos(char **str, va_list *ap)
 	*str += 1;
 	nbr = repartiteur(str, ap);
 	render = nbr;
-	if (g_worker[(int)'+'] != 0 || g_worker[(int)'o'] != 0 \
-	|| ft_strchr(nbr, '-') != NULL || g_worker[(int)'x'] != 0)
+	if (g_worker[(int)'+'] != 0 || g_worker[(int)'o'] != 0 || \
+	ft_strchr(nbr, '-') != NULL || g_worker[(int)'x'] != 0 || \
+	g_worker[(int)'c'] != 0 || g_worker[(int)'C'] != 0 || g_worker[(int)'p'] \
+	!= 0)
 		return (render);
 	g_worker[(int)'+'] = 1;
 	while (*(render + 1) == ' ' && *(render) == ' ')

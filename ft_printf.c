@@ -6,7 +6,7 @@
 /*   By: jjuret <jjuret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/23 23:37:54 by jjuret            #+#    #+#             */
-/*   Updated: 2016/12/15 15:44:48 by jjuret           ###   ########.fr       */
+/*   Updated: 2017/01/10 12:33:49 by jjuret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,10 @@ char			*repartiteur(char **str, va_list *ap)
 	if (g_print_tools[(int)**str] != 0)
 		matcher = g_print_tools[(int)**str](str, ap);
 	else
+	{
+		g_worker[(int)'?'] = 1;
 		return (ft_strdup("\0"));
+	}
 	return (matcher);
 }
 

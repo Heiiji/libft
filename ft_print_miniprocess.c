@@ -6,7 +6,7 @@
 /*   By: jjuret <jjuret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/08 15:38:20 by jjuret            #+#    #+#             */
-/*   Updated: 2017/01/09 15:27:20 by jjuret           ###   ########.fr       */
+/*   Updated: 2017/01/10 15:24:15 by jjuret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,10 @@ void	print_action(char **format, va_list *ap, int *compteur)
 	*compteur += ft_strlen(tool);
 	if (g_worker[(int)'c'] == 2)
 		*compteur += 1;
+	if (g_worker[(int)'C'] == 2 || g_worker[(int)'c'] == 2)
+		ft_putchar(0);
+	if (g_worker[(int)'C'] > 0 && g_worker[(int)'2'] == 1)
+		*compteur -= 1;
 	free(tool);
 }
 

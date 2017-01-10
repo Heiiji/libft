@@ -6,7 +6,7 @@
 /*   By: jjuret <jjuret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/08 14:12:08 by jjuret            #+#    #+#             */
-/*   Updated: 2017/01/07 17:42:27 by jjuret           ###   ########.fr       */
+/*   Updated: 2017/01/10 15:10:04 by jjuret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,11 @@ char			*process_space(char **str, va_list *ap)
 	char	*render;
 
 	*str += 1;
+	g_worker[(int)'2'] = 1;
 	nbr = repartiteur(str, ap);
 	if (*(*str - 1) == 'u' || g_worker[(int)'x'] == 1 || g_worker[(int)'o'] \
-	== 1 || g_worker[(int)'c'])
+	== 1 || g_worker[(int)'c'] || g_worker[(int)'p'] != 0 || \
+	ft_strcmp(nbr, "(null)") == 0)
 		return (nbr);
 	if (*nbr != '-' && *nbr != '+' && *nbr != '0' && *nbr != ' ' && \
 	g_worker[(int)' '] != 1 && *nbr != '%' && ft_strlen(nbr) > 0 && *nbr > 0)
@@ -65,15 +67,12 @@ char			*process_space(char **str, va_list *ap)
 		ft_strcpy(render + 1, nbr);
 		*render = ' ';
 		free(nbr);
+		return (render);
 	}
-	else
-	{
-		g_worker[(int)' '] = 1;
-		if (*nbr == '0')
-			*nbr = ' ';
-		return (nbr);
-	}
-	return (render);
+	g_worker[(int)' '] = 1;
+	if (*nbr == '0')
+		*nbr = ' ';
+	return (nbr);
 }
 
 char			*process_lld(char **str, va_list *ap)

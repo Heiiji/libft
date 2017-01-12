@@ -18,11 +18,9 @@
 char			*process_u(char **str, va_list *ap)
 {
 	char	*result;
-	char	drole[2];
 
 	*str += 1;
 	result = NULL;
-	drole[1] = '\0';
 	g_worker[(int)'+'] = -1;
 	if (check_leng(*str) == 11 || *(*str - 1) == 'U')
 		result = ft_itoa_base_ull(va_arg(*ap, long unsigned int), 10);

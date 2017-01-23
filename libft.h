@@ -6,7 +6,7 @@
 /*   By: jjuret <jjuret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/03 18:40:56 by jjuret            #+#    #+#             */
-/*   Updated: 2017/01/09 14:58:34 by jjuret           ###   ########.fr       */
+/*   Updated: 2017/01/23 15:08:05 by jjuret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ typedef	struct		s_list
 }					t_list;
 
 int					ft_atoi(const char *str);
+long int			ft_atoi_l(const char *str);
 void				ft_bzero(void *s, size_t n);
 size_t				ft_count_words(char *s, char c);
 int					ft_display_file(int argc, char **argv);

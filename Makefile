@@ -6,7 +6,7 @@
 #    By: jjuret <jjuret@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/07/18 08:54:13 by jjuret            #+#    #+#              #
-#    Updated: 2017/01/09 16:53:01 by jjuret           ###   ########.fr        #
+#    Updated: 2017/01/25 12:56:24 by jjuret           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -102,101 +102,16 @@ SRC =	./ft_atoi.c\
 		./ft_power.c\
 		./get_next_line.c
 
-OBJS = ./ft_atoi.o\
-		./ft_bzero.o\
-		./ft_count_words.o\
-		./ft_display_file.o\
-		./ft_foreach.o\
-		./ft_isalnum.o\
-		./ft_isalpha.o\
-		./ft_isascii.o\
-		./ft_isdigit.o\
-		./ft_isprint.o\
-		./ft_itoa.o\
-		./ft_itoa_l.o\
-		./ft_itoa_u.o\
-		./ft_itoa_base_l.o\
-		./ft_itoa_base_h.o\
-		./ft_itoa_base_hh.o\
-		./ft_lstadd.o\
-		./ft_lstdel.o\
-		./ft_lstdelone.o\
-		./ft_lstiter.o\
-		./ft_lstmap.o\
-		./ft_lstnew.o\
-		./ft_memalloc.o\
-		./ft_memccpy.o\
-		./ft_memchr.o\
-		./ft_memcmp.o\
-		./ft_memcpy.o\
-		./ft_strdel.o\
-		./ft_memdel.o\
-		./ft_memmove.o\
-		./ft_memset.o\
-		./ft_putchar_fd.o\
-		./ft_putchar.o\
-		./ft_putwchar.o\
-		./ft_putwchar_fd.o\
-		./ft_putendl_fd.o\
-		./ft_putendl.o\
-		./ft_putnbr_fd.o\
-		./ft_putnbr.o\
-		./ft_putnbr_u.o\
-		./ft_putstr_fd.o\
-		./ft_putstr.o\
-		./ft_putwstr.o\
-		./ft_putnwstr.o\
-		./ft_putwstr_fd.o\
-		./ft_sqrt.o\
-		./ft_strcat.o\
-		./ft_strchr.o\
-		./ft_strclr.o\
-		./ft_strcmp.o\
-		./ft_strnequ.o\
-		./ft_strcpy.o\
-		./ft_strdup.o\
-		./ft_strequ.o\
-		./ft_striter.o\
-		./ft_striteri.o\
-		./ft_strjoin.o\
-		./ft_strlcat.o\
-		./ft_strlen.o\
-		./ft_wstrlen.o\
-		./ft_strmap.o\
-		./ft_strmapi.o\
-		./ft_strncat.o\
-		./ft_strncmp.o\
-		./ft_strncpy.o\
-		./ft_strnew.o\
-		./ft_strnstr.o\
-		./ft_strrchr.o\
-		./ft_strsplit.o\
-		./ft_strstr.o\
-		./ft_strsub.o\
-		./ft_strtrim.o\
-		./ft_swap.o\
-		./ft_tolower.o\
-		./ft_toupper.o\
-		./ft_printf.o\
-		./ft_print_process.o\
-		./ft_print_process2.o\
-		./ft_print_process3.o\
-		./ft_print_process4.o\
-		./ft_print_process5.o\
-		./ft_print_process6.o\
-		./ft_print_miniprocess.o\
-		./ft_print_miniprocess2.o\
-		./ft_itoa_base.o\
-		./ft_itoa_base_ll.o\
-		./ft_itoa_base_ull.o\
-		./ft_power.o\
-		./get_next_line.o
+OBJS =  $(SRC:.c=.o)
 
-all:$(NAME)
+all: $(NAME)
 
-$(NAME):
-	gcc -c $^ $(SRC) -Wall -Werror -Wextra
+$(NAME): $(OBJS)
 	ar rc $(NAME) $(OBJS)
+	ranlib $(NAME)
+
+%.o    :    %.c $(DEPENDS)
+	gcc -Wall -Werror -Wextra -c $< -o $@
 
 clean:
 	rm -f $(OBJS)

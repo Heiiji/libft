@@ -6,13 +6,13 @@
 /*   By: jjuret <jjuret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/22 15:15:12 by jjuret            #+#    #+#             */
-/*   Updated: 2016/12/10 15:13:36 by jjuret           ###   ########.fr       */
+/*   Updated: 2017/09/29 12:41:13 by jjuret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
-# define BUFF_SIZE 3
+# define BUFF_SIZE 6
 
 # include <unistd.h>
 # include <stdlib.h>

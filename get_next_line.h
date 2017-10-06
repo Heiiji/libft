@@ -3,28 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jjuret <jjuret@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jeahoare <jeahoare@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/22 15:15:12 by jjuret            #+#    #+#             */
-/*   Updated: 2017/09/29 12:41:13 by jjuret           ###   ########.fr       */
+/*   Created: 2017/06/24 19:32:42 by jeahoare          #+#    #+#             */
+/*   Updated: 2017/10/06 16:21:39 by jjuret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
-# define BUFF_SIZE 6
 
+# include <fcntl.h>
+# include "libft.h"
 # include <unistd.h>
 # include <stdlib.h>
-# include <fcntl.h>
+# include <limits.h>
 
-typedef	struct		s_reader
-{
-	int				fd;
-	char			*cursor;
-	struct s_reader	*next;
-}					t_reader;
+# define BUFF_SIZE 32
 
-int					get_next_line(const int fd, char **line);
+int	get_next_line(int const fd, char **line);
 
 #endif

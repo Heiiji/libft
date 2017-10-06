@@ -3,118 +3,90 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jjuret <jjuret@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jeahoare <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/22 15:14:08 by jjuret            #+#    #+#             */
-/*   Updated: 2016/12/10 15:13:01 by jjuret           ###   ########.fr       */
+/*   Created: 2017/01/14 10:32:20 by jeahoare          #+#    #+#             */
+/*   Updated: 2017/06/24 21:08:56 by jeahoare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include "libft.h"
 
-t_reader	*checker(int fd)
+static	void		ft_new_data(char **old_buff, char *tmp, char *buff)
 {
-	static t_reader	*board = NULL;
-	t_reader		*cursor;
-
-	cursor = board;
-	while (cursor)
-	{
-		if (fd == cursor->fd)
-			return (cursor);
-		cursor = cursor->next;
-	}
-	cursor = (t_reader*)malloc(sizeof(t_reader));
-	cursor->fd = fd;
-	if (board != NULL)
-		cursor->next = board;
-	else
-		cursor->next = NULL;
-	cursor->cursor = NULL;
-	board = cursor;
-	return (cursor);
+	tmp = ft_strdup(*old_buff);
+	ft_memdel((void **)old_buff);
+	*old_buff = ft_strjoin(tmp, buff);
+	ft_memdel((void **)&tmp);
 }
 
-int			extra(char **line, t_reader *worker, char *tmp, int len)
+static int			ft_data_checker(char **old_buff, char **line)
 {
-	*line = ft_strdup(tmp);
-	free(tmp);
-	free(worker->cursor);
-	worker->cursor = NULL;
-	return ((len) > 0 ? 1 : 0);
-}
+	char			*tmp;
 
-int			first_malloc(t_reader **worker, int fd)
-{
-	int nb_read;
-
-	if (fd < 0)
-		return (-1);
-	*worker = checker(fd);
-	if ((*worker)->cursor == NULL)
+	tmp = ft_strchr(*old_buff, '\n');
+	if (tmp)
 	{
-		(*worker)->cursor = (char *)malloc(sizeof(char) * (BUFF_SIZE + 1));
-		if ((nb_read = read(fd, (*worker)->cursor, BUFF_SIZE)) < 1)
-			return (nb_read);
-		(*worker)->cursor[nb_read] = '\0';
-	}
-	return (1000);
-}
-
-int			extention(const int fd, char **line, t_reader *worker)
-{
-	int			nb_read;
-	int			len;
-	char		*tmp;
-	char		*cur;
-	char		*cur2;
-
-	tmp = ft_strdup(worker->cursor);
-	len = ft_strlen(worker->cursor);
-	cur = tmp;
-	free(worker->cursor);
-	worker->cursor = (char *)malloc(sizeof(char) * BUFF_SIZE + len);
-	cur2 = worker->cursor;
-	while (*cur != '\0')
-	{
-		*cur2 = *cur;
-		cur++;
-		cur2++;
-	}
-	nb_read = read(fd, cur2, BUFF_SIZE);
-	worker->cursor[len + nb_read] = '\0';
-	if (nb_read <= 0)
-		return (extra(line, worker, tmp, len));
-	free(tmp);
-	return (get_next_line(fd, line));
-}
-
-int			get_next_line(const int fd, char **line)
-{
-	t_reader	*worker;
-	char		*target;
-	int			nb_read;
-	size_t		len;
-
-	worker = NULL;
-	if ((nb_read = first_malloc(&worker, fd)) < 1)
-		return (nb_read);
-	if ((target = ft_strchr(worker->cursor, '\n')))
-	{
-		len = target - worker->cursor;
-		*line = (char *)malloc(sizeof(char) * len + 1);
-		*line = ft_strncpy(*line, worker->cursor, len);
-		*(*line + len) = '\0';
-		target = ft_strdup(&(worker->cursor[len + 1]));
-		if (*target == '\0')
-		{
-			free(target);
-			target = NULL;
-		}
-		free(worker->cursor);
-		worker->cursor = target;
+		*line = ft_strsub(*old_buff, 0, tmp - *old_buff);
+		ft_memmove(*old_buff, tmp + 1, ft_strlen(tmp));
+		tmp = NULL;
 		return (1);
 	}
-	return (extention(fd, line, worker));
+	return (0);
+}
+
+static	int			ft_buffer(int fd, char **old_buff, char **line)
+{
+	char			*buff;
+	char			*tmp;
+	int				ret;
+
+	if (!(buff = (char *)malloc(sizeof(char) * BUFF_SIZE + 1)))
+		return (-1);
+	buff[BUFF_SIZE] = 0;
+	while ((ret = read(fd, buff, BUFF_SIZE)))
+	{
+		if (ret == -1)
+			return (-1);
+		buff[ret] = '\0';
+		tmp = NULL;
+		if (*old_buff)
+			ft_new_data(old_buff, tmp, buff);
+		else
+			*old_buff = ft_strdup(buff);
+		if (ft_data_checker(old_buff, line))
+		{
+			ft_memdel((void **)&buff);
+			return (1);
+		}
+	}
+	ft_memdel((void **)&buff);
+	return (0);
+}
+
+int					get_next_line(int const fd, char **line)
+{
+	static	char	*old_buff[OPEN_MAX];
+	char			*check_error_fd;
+	int				ret;
+
+	if (!(check_error_fd = (char *)malloc(sizeof(char) * 1)))
+		return (-1);
+	if (!line || fd < 0 || fd > OPEN_MAX || read(fd, check_error_fd, 0) < 0)
+	{
+		ft_memdel((void **)&check_error_fd);
+		if (line != NULL)
+			*line = NULL;
+		return (-1);
+	}
+	ft_memdel((void **)&check_error_fd);
+	if (old_buff[fd] && ft_data_checker(&old_buff[fd], line))
+		return (1);
+	if ((ret = ft_buffer(fd, &old_buff[fd], line)) != 0)
+		return (ret);
+	if (old_buff[fd] == NULL || old_buff[fd][0] == '\0')
+		return (0);
+	*line = old_buff[fd];
+	old_buff[fd] = NULL;
+	return (1);
 }

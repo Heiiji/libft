@@ -6,7 +6,7 @@
 /*   By: jjuret <jjuret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/04 17:19:40 by jjuret            #+#    #+#             */
-/*   Updated: 2017/10/20 08:42:56 by jjuret           ###   ########.fr       */
+/*   Updated: 2017/10/20 08:49:20 by jjuret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int			ft_atoi(const char *str)
 	neg = 1;
 	cursor = (char *)str;
 	result = 0;
-	while (*cursor <= (char)13 && *cursor >= (char)9 || *cursor == (char)32)
+	while ((*cursor <= (char)13 && *cursor >= (char)9) || *cursor == (char)32)
 		cursor++;
 	if (*cursor == '-' || *cursor == '+')
 	{
@@ -47,7 +47,7 @@ long int	ft_atoi_l(const char *str)
 	neg = 1;
 	cursor = (char *)str;
 	result = 0;
-	while (*cursor <= (char)13 && *cursor > (char)9 || *cursor == (char)32)
+	while ((*cursor <= (char)13 && *cursor > (char)9) || *cursor == (char)32)
 		cursor++;
 	if (*cursor == '-' || *cursor == '+')
 	{

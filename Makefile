@@ -6,7 +6,7 @@
 #    By: jjuret <jjuret@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/07/18 08:54:13 by jjuret            #+#    #+#              #
-#    Updated: 2017/01/25 12:56:24 by jjuret           ###   ########.fr        #
+#    Updated: 2017/10/20 08:54:20 by jjuret           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -107,16 +107,18 @@ OBJS =  $(SRC:.c=.o)
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	ar rc $(NAME) $(OBJS)
+	@ar rc $(NAME) $(OBJS)
 	ranlib $(NAME)
 
 %.o    :    %.c $(DEPENDS)
-	gcc -Wall -Werror -Wextra -c $< -o $@
+	@gcc -Wall -Werror -Wextra -c $< -o $@
 
 clean:
-	rm -f $(OBJS)
+	@rm -f $(OBJS)
 
 fclean: clean
-	rm -f $(NAME)
+	@rm -f $(NAME)
 
 re: fclean all
+
+.PHONY: all re clean fclean
